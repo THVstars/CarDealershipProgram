@@ -15,6 +15,8 @@ public class Main {
 
         dealership.displayInventory();
 
-        dealership.bookACar("Genesis");
+        dealership.bookACar();
+
+        dealership.returnACar();
     }
 }
