@@ -1,10 +1,10 @@
 package com.carolinasanchez;
 
 public class Car {
-    public String make;
-    public String model;
-    public int mileage;
-    public float gasTankPercent;
+    private String make;
+    private String model;
+    private int mileage;
+    private float gasTankPercent;
 
     public Car(String make, String model, int mileage, float gasTankPercent) {
         this.make = make;

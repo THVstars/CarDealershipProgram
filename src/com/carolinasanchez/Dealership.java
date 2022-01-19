@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Dealership {
-    public String dealershipName;
-    public ArrayList<Car> currentCarsAvailable;
-    public ArrayList<Car> currentCarsBooked;
+    private String dealershipName;
+    private ArrayList<Car> currentCarsAvailable;
+    private ArrayList<Car> currentCarsBooked;
     Scanner scanner = new Scanner(System.in);
 
     public Dealership(String dealershipName) {
