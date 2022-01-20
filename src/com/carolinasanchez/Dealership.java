@@ -45,14 +45,22 @@ public class Dealership {
         }
     }
 
-    public void bookACar() { // String because the make is a String.
+    public void bookACar() { // Parameter would be String because the make is a String, and they need to be compared.
         System.out.println(" ");
-        System.out.println("Would you like to book a Genesis, Lacrosse or Continental?");
+        String prompt = "Would you like to book a ";
+        for (int i = 0; i < currentCarsAvailable.size(); i++) {
+            if (i == currentCarsAvailable.size() - 1) {
+                prompt += "or " + currentCarsAvailable.get(i).getMake() + "?";
+            } else {
+                prompt += currentCarsAvailable.get(i).getMake() + ", ";
+            }
+        }
+        System.out.println(prompt);
         String carName = scanner.nextLine();
-        for (int i = 0; i < this.getCurrentCarsAvailable().size(); i++){
-            if (getCurrentCarsAvailable().get(i).getMake().equals(carName)) { // WOULD NOT WORK WITH ==, ONLY .EQUALS WOULD MOVE THE CAR FROM ONE ARRAY TO ANOTHER! == worked when the method had a parameter and that parameter was used to compare though. Best to use .equals when comparing strings in all cases, since sometimes == works, and sometimes it doesn't.
-                getCurrentCarsBooked().add(getCurrentCarsAvailable().get(i));
-                getCurrentCarsAvailable().remove(i);
+        for (int i = 0; i < currentCarsAvailable.size(); i++){
+            if (currentCarsAvailable.get(i).getMake().equals(carName)) { // WOULD NOT WORK WITH ==, ONLY .EQUALS WOULD MOVE THE CAR FROM ONE ARRAY TO ANOTHER! == worked when the method had a parameter and that parameter was used to compare though. Best to use .equals when comparing strings in all cases, since sometimes == works, and sometimes it doesn't.
+                currentCarsBooked.add(currentCarsAvailable.get(i));
+                currentCarsAvailable.remove(i);
             }
         }
         System.out.println(" ");
@@ -60,14 +68,24 @@ public class Dealership {
         System.out.println("Booked Cars: " + currentCarsBooked.toString());
     }
 
-    public void returnACar() { // String because the make is a String.
+    public void returnACar() {
         System.out.println(" ");
-        System.out.println("Would you like to return a Genesis, Lacrosse or Continental?");
+        String prompt = "Would you like to return a ";
+        for (int i = 0; i < currentCarsBooked.size(); i++) {
+            if (i == currentCarsBooked.size() - 1 && 1 != currentCarsBooked.size()) {
+                prompt += "or " + currentCarsBooked.get(i).getMake() + "?";
+            } else if (i != currentCarsBooked.size() - 1) {
+                prompt += currentCarsBooked.get(i).getMake() + ", ";
+            } else {
+                prompt += currentCarsBooked.get(i).getMake() + "?";
+            }
+        }
+        System.out.println(prompt);
         String carReturn = scanner.nextLine();
-        for (int i = 0; i < this.getCurrentCarsBooked().size(); i++){
-            if (getCurrentCarsBooked().get(i).getMake().equals(carReturn)) {
-                getCurrentCarsAvailable().add(getCurrentCarsBooked().get(i));
-                getCurrentCarsBooked().remove(i);
+        for (int i = 0; i < currentCarsBooked.size(); i++){
+            if (currentCarsBooked.get(i).getMake().equals(carReturn)) {
+                currentCarsAvailable.add(currentCarsBooked.get(i));
+                currentCarsBooked.remove(i);
             }
         }
         System.out.println(" ");
