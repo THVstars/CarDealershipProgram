@@ -1,6 +1,9 @@
 package com.carolinasanchez;
 
+import java.util.Scanner;
+
 public class Main {
+    static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         Car Hyundai = new Car("Genesis", "GV80", 1000, 100);
@@ -15,8 +18,23 @@ public class Main {
 
         dealership.displayInventory();
 
-        dealership.bookACar();
+        System.out.println(" ");
+        System.out.println("Would you like to: \n1. Book a car \n2. Return a car \n3. Exit the dealership? Please enter a number.");
+        System.out.println(" ");
+        int response = scanner.nextInt();
 
-        dealership.returnACar();
+        while (response == 1) {
+            dealership.bookACar();
+            System.out.println(" ");
+            System.out.println("Would you like to: \n1. Book a car \n2. Return a car \n3. Exit the dealership? Please enter a number.");
+            System.out.println(" ");
+            response = scanner.nextInt();
+        } while (response == 2) {
+            dealership.returnACar();
+            System.out.println(" ");
+            System.out.println("Would you like to: \n1. Book a car \n2. Return a car \n3. Exit the dealership? Please enter a number.");
+            System.out.println(" ");
+            response = scanner.nextInt();
+        }
     }
 }

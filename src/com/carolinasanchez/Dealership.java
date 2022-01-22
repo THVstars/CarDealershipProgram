@@ -47,12 +47,16 @@ public class Dealership {
 
     public void bookACar() { // Parameter would be String because the make is a String, and they need to be compared.
         System.out.println(" ");
-        String prompt = "Would you like to book a ";
+        String prompt = currentCarsAvailable.size() > 0 ? "Would you like to book a " : "Sorry, there are no cars available to book. Please enter 0."; // Simple solution: Please enter the make of the car you'd like to book:
         for (int i = 0; i < currentCarsAvailable.size(); i++) {
-            if (i == currentCarsAvailable.size() - 1) {
-                prompt += "or " + currentCarsAvailable.get(i).getMake() + "?";
-            } else {
+            if (currentCarsAvailable.size() - 1 == i && currentCarsAvailable.size() != 1) {
+                prompt += "or " + currentCarsAvailable.get(i).getMake() + "? Please enter the make of the vehicle.";
+            } else if (currentCarsAvailable.size() > 2) {
                 prompt += currentCarsAvailable.get(i).getMake() + ", ";
+            } else if (currentCarsAvailable.size() != 1) {
+                prompt += currentCarsAvailable.get(i).getMake() + " ";
+            } else {
+                prompt += currentCarsAvailable.get(i).getMake() + "?";
             }
         }
         System.out.println(prompt);
@@ -70,14 +74,16 @@ public class Dealership {
 
     public void returnACar() {
         System.out.println(" ");
-        String prompt = "Would you like to return a ";
+        String prompt = currentCarsBooked.size() > 0 ? "Would you like to return a " : "Sorry, there are no cars to return. Please enter 0."; // Simple solution: Please enter the make of the car you'd like to return:
         for (int i = 0; i < currentCarsBooked.size(); i++) {
-            if (i == currentCarsBooked.size() - 1 && 1 != currentCarsBooked.size()) {
-                prompt += "or " + currentCarsBooked.get(i).getMake() + "?";
-            } else if (i != currentCarsBooked.size() - 1) {
+            if (currentCarsBooked.size() - 1 == i && currentCarsBooked.size() != 1) {
+                prompt += "or " + currentCarsBooked.get(i).getMake() + "? Please enter the make of the vehicle.";
+            } else if (currentCarsBooked.size() > 2) {
                 prompt += currentCarsBooked.get(i).getMake() + ", ";
+            } else if (currentCarsBooked.size() != 1) {
+                prompt += currentCarsBooked.get(i).getMake() + " ";
             } else {
-                prompt += currentCarsBooked.get(i).getMake() + "?";
+                prompt += currentCarsBooked.get(i).getMake() + "? Please enter the make of the vehicle.";
             }
         }
         System.out.println(prompt);
