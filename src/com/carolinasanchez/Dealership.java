@@ -47,7 +47,7 @@ public class Dealership {
 
     public void bookACar() { // Parameter would be String because the make is a String, and they need to be compared.
         System.out.println(" ");
-        String prompt = currentCarsAvailable.size() > 0 ? "Would you like to book a " : "Sorry, there are no cars available to book. Please enter 0."; // Simple solution: Please enter the make of the car you'd like to book:
+        String prompt = currentCarsAvailable.size() > 0 ? "Would you like to book a " : "Sorry, there are no cars available to book. Please enter 0 to return to the main menu."; // If we had a ton of different cars available or booked, these prompts would create exceptionally long sentences for the customers to have to read through. Simple solution: Please enter the make of the car you'd like to book:
         for (int i = 0; i < currentCarsAvailable.size(); i++) {
             if (currentCarsAvailable.size() - 1 == i && currentCarsAvailable.size() != 1) {
                 prompt += "or " + currentCarsAvailable.get(i).getMake() + "? Please enter the make of the vehicle.";
@@ -56,12 +56,12 @@ public class Dealership {
             } else if (currentCarsAvailable.size() != 1) {
                 prompt += currentCarsAvailable.get(i).getMake() + " ";
             } else {
-                prompt += currentCarsAvailable.get(i).getMake() + "?";
+                prompt += currentCarsAvailable.get(i).getMake() + "? Please enter the make of the vehicle.";
             }
         }
         System.out.println(prompt);
         String carName = scanner.nextLine();
-        for (int i = 0; i < currentCarsAvailable.size(); i++){
+        for (int i = 0; i < currentCarsAvailable.size(); i++) {
             if (currentCarsAvailable.get(i).getMake().equals(carName)) { // WOULD NOT WORK WITH ==, ONLY .EQUALS WOULD MOVE THE CAR FROM ONE ARRAY TO ANOTHER! == worked when the method had a parameter and that parameter was used to compare though. Best to use .equals when comparing strings in all cases, since sometimes == works, and sometimes it doesn't.
                 currentCarsBooked.add(currentCarsAvailable.get(i));
                 currentCarsAvailable.remove(i);
@@ -74,7 +74,7 @@ public class Dealership {
 
     public void returnACar() {
         System.out.println(" ");
-        String prompt = currentCarsBooked.size() > 0 ? "Would you like to return a " : "Sorry, there are no cars to return. Please enter 0."; // Simple solution: Please enter the make of the car you'd like to return:
+        String prompt = currentCarsBooked.size() > 0 ? "Would you like to return a " : "Sorry, there are no cars to return. Please enter 0 to return to the main menu."; // Simple solution: Please enter the make of the car you'd like to return:
         for (int i = 0; i < currentCarsBooked.size(); i++) {
             if (currentCarsBooked.size() - 1 == i && currentCarsBooked.size() != 1) {
                 prompt += "or " + currentCarsBooked.get(i).getMake() + "? Please enter the make of the vehicle.";
@@ -88,7 +88,7 @@ public class Dealership {
         }
         System.out.println(prompt);
         String carReturn = scanner.nextLine();
-        for (int i = 0; i < currentCarsBooked.size(); i++){
+        for (int i = 0; i < currentCarsBooked.size(); i++) {
             if (currentCarsBooked.get(i).getMake().equals(carReturn)) {
                 currentCarsAvailable.add(currentCarsBooked.get(i));
                 currentCarsBooked.remove(i);
