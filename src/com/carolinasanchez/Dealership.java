@@ -3,13 +3,13 @@ package com.carolinasanchez;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Dealership {
+public class Dealership { // CLASS DECLARATION
     private String dealershipName;
     private ArrayList<Car> currentCarsAvailable;
     private ArrayList<Car> currentCarsBooked;
     Scanner scanner = new Scanner(System.in);
 
-    public Dealership(String dealershipName) {
+    public Dealership(String dealershipName) { // CONSTRUCTOR
         this.dealershipName = dealershipName;
         this.currentCarsAvailable = new ArrayList<>();
         this.currentCarsBooked = new ArrayList<>();
@@ -17,11 +17,11 @@ public class Dealership {
 
     public String getDealershipName() {
         return dealershipName;
-    }
+    } // GETTER
 
     public void setDealershipName(String dealershipName) {
         this.dealershipName = dealershipName;
-    }
+    } // SETTER
 
     public ArrayList<Car> getCurrentCarsAvailable() {
         return currentCarsAvailable;
@@ -65,6 +65,10 @@ public class Dealership {
             if (currentCarsAvailable.get(i).getMake().equals(carName)) { // WOULD NOT WORK WITH ==, ONLY .EQUALS WOULD MOVE THE CAR FROM ONE ARRAY TO ANOTHER! == worked when the method had a parameter and that parameter was used to compare though. Best to use .equals when comparing strings in all cases, since sometimes == works, and sometimes it doesn't.
                 currentCarsBooked.add(currentCarsAvailable.get(i));
                 currentCarsAvailable.remove(i);
+                System.out.println("You've booked a " + currentCarsBooked.get(currentCarsBooked.size() - 1).getMake() + ".");
+                break; // BREAK NEEDED HERE SO THAT IT DOESN'T KEEP SEARCHING OTHER INDEXES FOR THE CAR AFTER IT'S BEEN FOUND!
+            } else if (i == currentCarsAvailable.size() - 1){ // THIS ELSE IF MUST BE INCLUDED INSTEAD OF JUST AN ELSE STATEMENT SO THAT THE STRING IS PRINTED OUT ONLY ONCE!
+                System.out.println("Sorry, that car isn't available for booking.");
             }
         }
         System.out.println(" ");
@@ -92,6 +96,10 @@ public class Dealership {
             if (currentCarsBooked.get(i).getMake().equals(carReturn)) {
                 currentCarsAvailable.add(currentCarsBooked.get(i));
                 currentCarsBooked.remove(i);
+                System.out.println("You've returned a " + currentCarsAvailable.get(currentCarsAvailable.size() - 1).getMake() + ".");
+                break;
+            } else if (i == currentCarsBooked.size() - 1) {
+                System.out.println("Sorry, that car hasn't been booked.");
             }
         }
         System.out.println(" ");
