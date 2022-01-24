@@ -67,7 +67,7 @@ public class Dealership { // CLASS DECLARATION
                 currentCarsAvailable.remove(i);
                 System.out.println("You've booked a " + currentCarsBooked.get(currentCarsBooked.size() - 1).getMake() + ".");
                 break; // BREAK NEEDED HERE SO THAT IT DOESN'T KEEP SEARCHING OTHER INDEXES FOR THE CAR AFTER IT'S BEEN FOUND!
-            } else if (i == currentCarsAvailable.size() - 1){ // THIS ELSE IF MUST BE INCLUDED INSTEAD OF JUST AN ELSE STATEMENT SO THAT THE STRING IS PRINTED OUT ONLY ONCE!
+            } else if (i == currentCarsAvailable.size() - 1){ // THIS ELSE IF STATEMENT MUST BE INCLUDED INSTEAD OF JUST AN ELSE STATEMENT SO THAT THE STRING IS PRINTED OUT ONLY ONCE!
                 System.out.println("Sorry, that car isn't available for booking.");
             }
         }
