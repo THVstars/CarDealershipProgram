@@ -46,7 +46,7 @@ public class Dealership { // CLASS DECLARATION
     }
 
     public void bookACar() { // Parameter would be String because the make is a String, and they need to be compared.
-        System.out.println(" ");
+        System.out.println("");
         String prompt = currentCarsAvailable.size() > 0 ? "Would you like to book a " : "Sorry, there are no cars available to book. Please enter 0 to return to the main menu."; // If we had a ton of different cars available or booked, these prompts would create exceptionally long sentences for the customers to have to read through. Simple solution: Please enter the make of the car you'd like to book:
         for (int i = 0; i < currentCarsAvailable.size(); i++) {
             if (currentCarsAvailable.size() - 1 == i && currentCarsAvailable.size() != 1) {
@@ -65,19 +65,21 @@ public class Dealership { // CLASS DECLARATION
             if (currentCarsAvailable.get(i).getMake().equals(carName)) { // WOULD NOT WORK WITH ==, ONLY .EQUALS WOULD MOVE THE CAR FROM ONE ARRAY TO ANOTHER! == worked when the method had a parameter and that parameter was used to compare though. Best to use .equals when comparing strings in all cases, since sometimes == works, and sometimes it doesn't.
                 currentCarsBooked.add(currentCarsAvailable.get(i));
                 currentCarsAvailable.remove(i);
-                System.out.println("You've booked a " + currentCarsBooked.get(currentCarsBooked.size() - 1).getMake() + ".");
+                System.out.println("");
+                System.out.println("You've booked a " + currentCarsBooked.get(currentCarsBooked.size() - 1).getMake() + ". Thank you for patronizing " + dealershipName + "!");
+                System.out.println("");
+                System.out.println("Available Cars: " + currentCarsAvailable.toString());
+                System.out.println("Booked Cars: " + currentCarsBooked.toString());
                 break; // BREAK NEEDED HERE SO THAT IT DOESN'T KEEP SEARCHING OTHER INDEXES FOR THE CAR AFTER IT'S BEEN FOUND!
             } else if (i == currentCarsAvailable.size() - 1){ // THIS ELSE IF STATEMENT MUST BE INCLUDED INSTEAD OF JUST AN ELSE STATEMENT SO THAT THE STRING IS PRINTED OUT ONLY ONCE!
+                System.out.println("");
                 System.out.println("Sorry, that car isn't available for booking.");
             }
         }
-        System.out.println(" ");
-        System.out.println("Available Cars: " + currentCarsAvailable.toString());
-        System.out.println("Booked Cars: " + currentCarsBooked.toString());
     }
 
     public void returnACar() {
-        System.out.println(" ");
+        System.out.println("");
         String prompt = currentCarsBooked.size() > 0 ? "Would you like to return a " : "Sorry, there are no cars to return. Please enter 0 to return to the main menu."; // Simple solution: Please enter the make of the car you'd like to return:
         for (int i = 0; i < currentCarsBooked.size(); i++) {
             if (currentCarsBooked.size() - 1 == i && currentCarsBooked.size() != 1) {
@@ -96,14 +98,16 @@ public class Dealership { // CLASS DECLARATION
             if (currentCarsBooked.get(i).getMake().equals(carReturn)) {
                 currentCarsAvailable.add(currentCarsBooked.get(i));
                 currentCarsBooked.remove(i);
-                System.out.println("You've returned a " + currentCarsAvailable.get(currentCarsAvailable.size() - 1).getMake() + ".");
+                System.out.println("");
+                System.out.println("You've returned a " + currentCarsAvailable.get(currentCarsAvailable.size() - 1).getMake() + ". Thank you for patronizing " + dealershipName + "!");
+                System.out.println("");
+                System.out.println("Available Cars: " + currentCarsAvailable.toString());
+                System.out.println("Booked Cars: " + currentCarsBooked.toString());
                 break;
             } else if (i == currentCarsBooked.size() - 1) {
+                System.out.println("");
                 System.out.println("Sorry, that car hasn't been booked.");
             }
         }
-        System.out.println(" ");
-        System.out.println("Available Cars: " + currentCarsAvailable.toString());
-        System.out.println("Booked Cars: " + currentCarsBooked.toString());
     }
 }
